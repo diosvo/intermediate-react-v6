@@ -1,0 +1,28 @@
+{
+  "author": "Dios Vo",
+  "bugs": {
+    "url": "https://github.com/diosvo/intermediate-react-v6/issues"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "description": "",
+  "homepage": "https://github.com/diosvo/intermediate-react-v6#readme",
+  "keywords": [
+    "React",
+    "SSG"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "intermediate-react-v6",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diosvo/intermediate-react-v6.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}
