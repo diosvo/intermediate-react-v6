@@ -3,7 +3,7 @@ const { readFileSync } = require('node:fs');
 const Fastify = require('fastify');
 const fastifyStaticPlugin = require('@fastify/static');
 const React = require('react');
-const { requireToPipeableStream } = require('react-server-dom-webpack/server');
+const { renderToPipeableStream } = require('react-server-dom-webpack/server');
 const AppImport = require('../src/App');
 
 // Represent the default export of an ES module when importing using CommonJS
@@ -36,7 +36,19 @@ fastify.register(fastifyStaticPlugin, {
 fastify.get('/', async function rootHandler(request, reply) {
   return reply.sendFile('index.html');
 });
-fastify.get('/react-flight', function reactFlightHandler(request, reply) {});
+fastify.get('/react-flight', function reactFlightHandler(request, reply) {
+  try {
+    reply.header('content-type', 'application/octet-stream');
+    const { pipe } = renderToPipeableStream(
+      React.createElement(App),
+      MODULE_MAP
+    );
+    pipe(reply.raw);
+  } catch (err) {
+    request.log.error('react-flight-error', err);
+    throw err;
+  }
+});
 
 module.exports = async function start() {
   try {
