@@ -1,5 +1,5 @@
 import { marked } from 'marked';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import MarkdownPreview from './MarkDownPreview';
 import markdownContent from './markdownContent';
@@ -17,8 +17,17 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
-  const options = { text, theme };
-  const render = (text) => marked.parse(text);
+  // Without hooks, "Last Render" in Preview would update every second
+  // Because they point to different memory locations, so even if their contents are the same, they are distinct objects with different references
+  const options = useMemo(
+    () => ({
+      text,
+      theme,
+    }),
+    [text, theme]
+  );
+  const render = useCallback((text) => marked.parse(text), [text]);
+  // Equal to: useMemo(() => (text) => marked.parse(text), [text]); -- Any type
 
   return (
     <div className="app">

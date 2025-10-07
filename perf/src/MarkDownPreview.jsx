@@ -1,7 +1,10 @@
+import { memo } from 'react';
+
 // A technical term describing when scrolling or rendering pauses and jumps, causing a stuttering or unsmooth visual experience in web interfaces
 const JANK_DELAY = 100;
 
-export default function MarkdownPreview({ render, options }) {
+// memo: tells React to only re-render a component if its props have changed
+export default memo(function MarkdownPreview({ render, options }) {
   const expensiveRender = () => {
     const start = performance.now();
 
@@ -20,4 +23,4 @@ export default function MarkdownPreview({ render, options }) {
       {expensiveRender()}
     </div>
   );
-}
+});
