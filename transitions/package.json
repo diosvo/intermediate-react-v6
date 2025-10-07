@@ -1,0 +1,23 @@
+{
+  "author": "",
+  "dependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "vite": "6.2.0"
+  },
+  "description": "Transitions for better user experience",
+  "keywords": [
+    "Performance",
+    "Transitions"
+  ],
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "name": "transitions",
+  "scripts": {
+    "dev:client": "vite",
+    "dev:server": "node --watch server.js"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}
