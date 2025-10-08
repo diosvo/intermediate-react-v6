@@ -1,18 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import getScore from './getScore';
 import Score from './Score';
 
 export default function App() {
-  const [isPending, setIsPending] = useState(true);
+  const [isPending, startTransition] = useTransition();
   const [game, setGame] = useState(1);
   const [score, setScore] = useState({ home: '-', away: '-' });
 
   async function getNewScore(game) {
-    setIsPending(true);
     setGame(game);
-    const newScore = await getScore(game);
-    setScore(newScore);
-    setIsPending(false);
+
+    startTransition(async () => {
+      const newScore = await getScore(game);
+      setScore(newScore);
+    });
   }
 
   useEffect(() => {
