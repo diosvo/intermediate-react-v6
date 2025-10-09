@@ -3,7 +3,7 @@ export default function Slider({ value, deferred, onChange, name, max }) {
     <li className="slider">
       <label htmlFor={name}>
         {name}
-        {value !== deferred ? '(Updating)' : ''}
+        {value !== deferred ? ' (updating)' : ''}
       </label>
       <input
         type="range"

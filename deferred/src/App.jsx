@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useDeferredValue, useState } from 'react';
 import DisplayImage from './DisplayImange';
 import Slider from './Slider';
 
@@ -9,12 +9,18 @@ export default function App() {
   const [saturate, setSaturate] = useState(100);
   const [sepia, setSepia] = useState(0);
 
+  const deferredBlur = useDeferredValue(blur);
+  const deferredBrightness = useDeferredValue(brightness);
+  const deferredContrast = useDeferredValue(constrast);
+  const deferredSaturate = useDeferredValue(saturate);
+  const deferredSepia = useDeferredValue(sepia);
+
   const filterStyle = `
-    blur(${blur}px)
-    brightness(${brightness}%)
-    contrast(${constrast}%)
-    saturate(${saturate}%)
-    sepia(${sepia}%)
+    blur(${deferredBlur}px)
+    brightness(${deferredBrightness}%)
+    contrast(${deferredContrast}%)
+    saturate(${deferredSaturate}%)
+    sepia(${deferredSepia}%)
   `;
 
   return (
@@ -26,35 +32,35 @@ export default function App() {
           name="blur"
           max={20}
           value={blur}
-          deferred={blur}
+          deferred={deferredBlur}
           onChange={(e) => setBlur(e.target.value)}
         />
         <Slider
           name="brightness"
           max={200}
           value={brightness}
-          deferred={brightness}
+          deferred={deferredBrightness}
           onChange={(e) => setBrightness(e.target.value)}
         />
         <Slider
           name="contrast"
           max={200}
           value={constrast}
-          deferred={constrast}
+          deferred={deferredContrast}
           onChange={(e) => setContrast(e.target.value)}
         />
         <Slider
           name="saturate"
           max={200}
           value={saturate}
-          deferred={saturate}
+          deferred={deferredSaturate}
           onChange={(e) => setSaturate(e.target.value)}
         />
         <Slider
           name="sepia"
           max={100}
           value={sepia}
-          deferred={sepia}
+          deferred={deferredSepia}
           onChange={(e) => setSepia(e.target.value)}
         />
       </ul>

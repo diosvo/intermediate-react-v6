@@ -1,8 +1,9 @@
+import { memo } from 'react';
 import img from '../images/dog.png';
 
 const JANK_DELAY = 100;
 
-export default function DisplayImage({ filterStyle }) {
+export default memo(function DisplayImage({ filterStyle }) {
   const expensiveRender = () => {
     const start = performance.now();
 
@@ -17,4 +18,4 @@ export default function DisplayImage({ filterStyle }) {
       <p>Last Render: {Date.now()}</p>
     </>
   );
-}
+});
