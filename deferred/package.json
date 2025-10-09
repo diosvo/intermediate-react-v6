@@ -1,0 +1,22 @@
+{
+  "author": "Dios Vo",
+  "dependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "vite": "6.2.0"
+  },
+  "description": "Deferred Values",
+  "keywords": [
+    "Deferred"
+  ],
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "name": "deferred",
+  "scripts": {
+    "dev": "vite",
+    "dev:client": "vite"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}
